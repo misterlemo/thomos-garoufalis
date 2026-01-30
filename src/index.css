@@ -643,60 +643,165 @@ button {
     --spacing-xl: 4rem;
     --spacing-lg: 2rem;
   }
-  
+
   .nav-container {
     flex-direction: column;
     gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
   }
-  
+
+  .nav-brand h2 {
+    font-size: 1.2rem;
+  }
+
   .nav-menu {
     flex-wrap: wrap;
     justify-content: center;
     gap: var(--spacing-sm);
+    font-size: 0.9rem;
   }
-  
+
+  .nav-menu a {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .language-selector-button {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.9rem;
+  }
+
+  .home {
+    padding-top: 100px;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+  }
+
   .home-title {
     font-size: 1.8rem;
   }
-  
+
   .home-tagline {
     font-size: 1.2rem;
   }
-  
+
   .section-title {
     font-size: 2rem;
   }
-  
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
   .services-grid,
   .team-grid,
   .contact-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .features-grid {
     grid-template-columns: 1fr;
   }
-  
-  .home {
-    padding-top: 120px;
+
+  .service-card,
+  .feature-card,
+  .team-card {
+    padding: var(--spacing-md);
+  }
+
+  .team-photo-wrapper {
+    width: 200px;
+    height: 200px;
+  }
+
+  .team-photo-placeholder {
+    font-size: 3rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 16px;
   }
 }
 
 @media (max-width: 480px) {
-  .nav-menu {
-    font-size: 0.9rem;
+  .nav-container {
+    padding: var(--spacing-xs);
   }
-  
+
+  .nav-brand h2 {
+    font-size: 1rem;
+  }
+
+  .nav-menu {
+    font-size: 0.85rem;
+    gap: var(--spacing-xs);
+  }
+
   .nav-menu a {
     padding: var(--spacing-xs);
   }
-  
+
+  .language-selector-button {
+    font-size: 0.85rem;
+    padding: var(--spacing-xs);
+  }
+
+  .home {
+    padding-top: 80px;
+    padding-left: var(--spacing-sm);
+    padding-right: var(--spacing-sm);
+  }
+
   .home-title {
     font-size: 1.5rem;
   }
-  
+
+  .home-tagline {
+    font-size: 1rem;
+  }
+
   .section-title {
     font-size: 1.8rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .container {
+    padding-left: var(--spacing-sm);
+    padding-right: var(--spacing-sm);
+  }
+
+  .team-photo-wrapper {
+    width: 180px;
+    height: 180px;
+  }
+
+  .team-photo-placeholder {
+    font-size: 2.5rem;
+  }
+
+  .team-name {
+    font-size: 1.1rem;
+  }
+
+  .team-role {
+    font-size: 0.9rem;
+  }
+
+  .team-email {
+    font-size: 0.85rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 16px;
+  }
+
+  .submit-button {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.95rem;
   }
 }
 
