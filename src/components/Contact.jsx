@@ -206,6 +206,29 @@ const Contact = () => {
             title={language === 'el' ? 'Χάρτης Θεσσαλονίκης' : 'Thessaloniki Map'}
           ></iframe>
         </div>
+
+        <div className="contact-mobile-footer">
+          <div className="mobile-contact-item">
+            <h3>{t.addressLabel}</h3>
+            <p>{t.address}</p>
+          </div>
+          <div className="mobile-contact-item">
+            <h3>{t.phoneLabel}</h3>
+            <p>
+              <a href="tel:+306981357660">{t.phone}</a>
+            </p>
+          </div>
+          <div className="mobile-contact-item">
+            <a 
+              href="https://share.google/99rqClf5fOkhs9iWL" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="google-link"
+            >
+              {language === 'el' ? 'Βρείτε μας στο Google' : 'Find us on Google'}
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -8,6 +8,7 @@ export const translations = {
     home: 'Αρχική',
     services: 'Υπηρεσίες',
     team: 'Ομάδα',
+    reviews: 'Κριτικές',
     contact: 'Επικοινωνία',
     
     // Home Section
@@ -71,6 +72,10 @@ export const translations = {
     member4Role: '[To Be Updated: Professional role / specialization]',
     member4Bio: '[To Be Updated: Professional biography in Greek]',
     
+    // Reviews Section
+    reviewsTitle: 'Τι Λένε Οι Πελάτες Μας',
+    reviewsSubtitle: 'Η εμπιστοσύνη των πελατών μας είναι η καλύτερη διαφήμιση',
+    
     // Contact Section
     contactTitle: 'Επικοινωνήστε Μαζί Μας',
     contactSubtitle: 'Είμαστε στη διάθεσή σας για κάθε νομική ανάγκη',
@@ -125,6 +130,7 @@ export const translations = {
     home: 'მთავარი',
     services: 'მომსახურება',
     team: 'გუნდი',
+    reviews: 'მიმოხილვები',
     contact: 'კონტაქტი',
     
     // Home Section
@@ -188,6 +194,10 @@ export const translations = {
     member4Role: '[To Be Updated: Professional role / specialization]',
     member4Bio: '[To Be Updated: Professional biography in Georgian]',
     
+    // Reviews Section
+    reviewsTitle: 'რას ამბობენ ჩვენი კლიენტები',
+    reviewsSubtitle: 'ჩვენი კლიენტების ნდობა არის საუკეთესო რეკლამა',
+    
     // Contact Section
     contactTitle: 'დაგვიკავშირდით',
     contactSubtitle: 'ჩვენ ხელმისაწვდომი ვართ ყველა იურიდიული საჭიროებისთვის',
@@ -242,6 +252,7 @@ export const translations = {
     home: 'Kryefaqja',
     services: 'Shërbimet',
     team: 'Ekipi',
+    reviews: 'Komente',
     contact: 'Kontakt',
     
     // Home Section
@@ -305,6 +316,10 @@ export const translations = {
     member4Role: '[To Be Updated: Professional role / specialization]',
     member4Bio: '[To Be Updated: Professional biography in Albanian]',
     
+    // Reviews Section
+    reviewsTitle: 'Çfarë Thonë Klientët Tanë',
+    reviewsSubtitle: 'Besimi i klientëve tanë është reklama jonë më e mirë',
+    
     // Contact Section
     contactTitle: 'Na Kontaktoni',
     contactSubtitle: 'Jemi në dispozicion për të gjitha nevojat tuaja juridike',
@@ -359,6 +374,7 @@ export const translations = {
     home: 'Home',
     services: 'Services',
     team: 'Team',
+    reviews: 'Reviews',
     contact: 'Contact',
     
     // Home Section
@@ -421,6 +437,10 @@ export const translations = {
     member4Name: 'EFTYMIA GEORGOVITSA',
     member4Role: '[To Be Updated: Professional role / specialization]',
     member4Bio: '[To Be Updated: Professional biography in English]',
+    
+    // Reviews Section
+    reviewsTitle: 'What Our Clients Say',
+    reviewsSubtitle: 'Our clients trust is our best advertisement',
     
     // Contact Section
     contactTitle: 'Contact Us',
