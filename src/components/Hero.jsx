@@ -1,6 +1,7 @@
 import { useLanguage } from '../LanguageContext';
 import { useOfficeStatus, weekdayName, formatHour } from '../hooks';
 import { PHONE, PHONE_HREF } from '../data';
+import WhiteTower from './WhiteTower';
 import Emph from './Emph';
 
 export const StatusPill = () => {
@@ -60,14 +61,8 @@ const Hero = () => {
         </div>
 
         <figure className="hero-visual">
-          <div className="arch">
-            <img
-              src="/images/hero.jpg"
-              alt=""
-              width="1536"
-              height="1024"
-              fetchpriority="high"
-            />
+          <div className="arch arch-tower">
+            <WhiteTower />
           </div>
           <div className="seal" aria-hidden="true">
             <svg viewBox="0 0 200 200">
