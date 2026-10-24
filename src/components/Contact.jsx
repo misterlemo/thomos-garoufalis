@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '../LanguageContext';
 import { useOfficeStatus, weekdayName, formatHour } from '../hooks';
 import { HOURS, MAPS_EMBED, MAPS_URL, OFFICE_EMAILS, PHONE, PHONE_HREF, WEB3FORMS_KEY } from '../data';
@@ -13,7 +13,17 @@ const Contact = () => {
   const { today } = useOfficeStatus();
   const [data, setData] = useState(EMPTY);
   const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState('idle'); // idle | sending | success | error
+  const [status, setStatus] = useState('idle'); // idle | sending | success | error | mailto
+  const [draft, setDraft] = useState(null); // composed email for the no-key fallback
+  const [copied, setCopied] = useState(false);
+  const cardRef = useRef(null);
+
+  // The result panels are shorter than the form; keep them on screen.
+  useEffect(() => {
+    if (status === 'mailto' || status === 'success') {
+      cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [status]);
   const [botcheck, setBotcheck] = useState(false);
 
   const validate = () => {
@@ -40,8 +50,22 @@ const Contact = () => {
     const subject = `Website enquiry${data.topic ? ` — ${data.topic}` : ''}`;
 
     if (!WEB3FORMS_KEY) {
+      // No delivery service configured: hand off to the visitor's own email.
+      // mailto: fails silently when no mail app is set up, so always show
+      // the fallback panel with Gmail / copy options as well.
       const body = `${data.message}\n\n${data.name}\n${data.email}${data.phone ? `\n${data.phone}` : ''}`;
-      window.location.href = `mailto:${OFFICE_EMAILS.join(',')}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const to = OFFICE_EMAILS.join(',');
+      const q = `subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      setDraft({
+        body,
+        mailto: `mailto:${to}?${q}`,
+        gmail: `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
+      });
+      setCopied(false);
+      setStatus('mailto');
+      const link = document.createElement('a');
+      link.href = `mailto:${to}?${q}`;
+      link.click();
       return;
     }
 
@@ -65,6 +89,15 @@ const Contact = () => {
       setData(EMPTY);
     } catch {
       setStatus('error');
+    }
+  };
+
+  const copyDraft = async () => {
+    try {
+      await navigator.clipboard.writeText(`${OFFICE_EMAILS[0]}\n\n${draft.body}`);
+      setCopied(true);
+    } catch {
+      setCopied(false);
     }
   };
 
@@ -142,8 +175,36 @@ const Contact = () => {
           </dl>
         </div>
 
-        <div className="form-card" data-reveal>
-          {status === 'success' ? (
+        <div className="form-card" data-reveal ref={cardRef}>
+          {status === 'mailto' && draft ? (
+            <div className="form-fallback" role="status">
+              <h3>{t.form.fallbackTitle}</h3>
+              <p>{t.form.fallbackText}</p>
+              <div className="fallback-actions">
+                <a href={draft.mailto} className="btn btn-accent btn-block">
+                  {t.form.openMail}
+                </a>
+                <a href={draft.gmail} target="_blank" rel="noopener noreferrer" className="btn btn-outline-light btn-block">
+                  {t.form.openGmail} ↗
+                </a>
+                <button type="button" className="btn btn-outline-light btn-block" onClick={copyDraft}>
+                  {copied ? t.form.copied : t.form.copy}
+                </button>
+              </div>
+              <p className="form-note">
+                {t.form.sendTo}{' '}
+                {OFFICE_EMAILS.map((m, i) => (
+                  <span key={m}>
+                    {i > 0 && ' · '}
+                    <a href={`mailto:${m}`}>{m}</a>
+                  </span>
+                ))}
+              </p>
+              <button type="button" className="link-button" onClick={() => setStatus('idle')}>
+                {t.form.back}
+              </button>
+            </div>
+          ) : status === 'success' ? (
             <div className="form-done" role="status">
               <span className="form-done-mark" aria-hidden="true">✓</span>
               <p>{t.form.success}</p>

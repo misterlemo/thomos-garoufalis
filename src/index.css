@@ -1027,7 +1027,9 @@ p {
 }
 .person {
   display: grid;
-  gap: 20px;
+  grid-template-rows: auto 1fr;
+  align-content: start;
+  gap: 22px;
 }
 .portrait {
   position: relative;
@@ -1067,18 +1069,24 @@ p {
 }
 @media (hover: hover) {
   .person:hover .portrait {
-    background: var(--ink);
+    background: #d6ccb9;
   }
   .person:hover .portrait-initials {
-    color: var(--paper);
-    transform: scale(1.08);
+    color: var(--accent);
+    transform: scale(1.06);
   }
-  .person:hover .portrait::before {
-    opacity: 0.2;
+  .person:hover .person-email {
+    color: var(--ink);
   }
   .map:hover iframe {
     filter: none;
   }
+}
+.person-info {
+  display: grid;
+  align-content: start;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
 }
 .person-role {
   font-size: 12px;
@@ -1088,14 +1096,22 @@ p {
   margin-bottom: 6px;
 }
 .person-name {
-  font-size: clamp(22px, 1.9vw, 28px);
+  display: grid;
+  font-size: clamp(20px, 1.7vw, 26px);
   font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.01em;
-  line-height: 1.15;
-  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+  line-height: 1.18;
+  margin-bottom: 12px;
+}
+.person-name span:last-child {
+  font-style: italic;
+}
+:lang(ka) .person-name span:last-child {
+  font-style: normal;
 }
 .person-email {
+  justify-self: start;
   font-size: 14px;
   color: var(--muted);
   word-break: break-all;
@@ -1202,6 +1218,7 @@ p {
 
 .form-card {
   container-type: inline-size;
+  scroll-margin-top: calc(var(--header-h) + 16px);
   position: sticky;
   top: calc(var(--header-h) + 24px);
   padding: clamp(28px, 4vw, 48px);
@@ -1316,6 +1333,47 @@ p {
   color: #fff;
   font-family: var(--sans);
   font-size: 22px;
+}
+
+.form-fallback {
+  display: grid;
+  gap: 18px;
+}
+.form-fallback h3 {
+  font-size: clamp(28px, 2.6vw, 36px);
+}
+.form-fallback > p:not(.form-note) {
+  color: var(--on-dark-muted);
+}
+.fallback-actions {
+  display: grid;
+  gap: 10px;
+  margin: 6px 0;
+}
+.btn-outline-light {
+  border-color: var(--line-dark);
+  background: transparent;
+  color: var(--on-dark);
+}
+.btn-outline-light:hover {
+  border-color: var(--on-dark);
+}
+.form-note a {
+  color: var(--on-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.link-button {
+  justify-self: start;
+  padding: 6px 0;
+  border: 0;
+  background: none;
+  color: var(--on-dark-muted);
+  font: 500 14px/1.4 var(--sans);
+  cursor: pointer;
+}
+.link-button:hover {
+  color: var(--on-dark);
 }
 
 .map {

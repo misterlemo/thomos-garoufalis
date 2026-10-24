@@ -26,7 +26,12 @@ const Team = () => {
               </div>
               <div className="person-info">
                 <p className="person-role">{m.partner ? t.partner : t.associate}</p>
-                <h3 className="person-name">{t.team[i]}</h3>
+                <h3 className="person-name">
+                  {/* first name / surname on their own lines so every card lines up */}
+                  {t.team[i].split(' ').map((part) => (
+                    <span key={part}>{part}</span>
+                  ))}
+                </h3>
                 <a className="person-email" href={`mailto:${m.email}`}>
                   {m.email}
                 </a>

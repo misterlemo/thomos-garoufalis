@@ -38,7 +38,7 @@ The development server will start at `http://localhost:5173`
 ## Folder / File Structure
 
 ```
-thelawfirmproject/
+thomos-garoufalis/
 ├── index.html                 # Main HTML with SEO meta tags
 ├── package.json              # Project dependencies
 ├── vite.config.js           # Vite configuration

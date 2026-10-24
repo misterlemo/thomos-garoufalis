@@ -1,4 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#15140f"/>
-  <text x="32" y="43" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#f2ede4">Θ<tspan fill="#e0775a" font-style="italic">Γ</tspan></text>
+  <!-- Arch, echoing the header monogram and the hero photo frame -->
+  <path d="M5 62V32a27 27 0 0 1 54 0v30z" fill="#15140f" stroke="#f2ede4" stroke-opacity=".28" stroke-width="1.5"/>
+  <!-- Θ: thick sides, thinner top/bottom, like the display serif -->
+  <path fill="#f2ede4" fill-rule="evenodd" d="M22.5 29.6a9.8 12.4 0 1 0 0 24.8a9.8 12.4 0 1 0 0-24.8zM22.5 32.3a5.6 9.7 0 1 1 0 19.4a5.6 9.7 0 1 1 0-19.4z"/>
+  <rect x="17.4" y="40.6" width="10.2" height="2.8" fill="#f2ede4"/>
+  <!-- Γ: italic, thick stem, thin arm, serifs -->
+  <g fill="#e0775a" transform="translate(0 54.4) skewX(-12) translate(0 -54.4)">
+    <rect x="37" y="30" width="4.6" height="24.4"/>
+    <rect x="34.6" y="51.8" width="9.4" height="2.6"/>
+    <rect x="34.6" y="30" width="18" height="2.8"/>
+    <rect x="50.2" y="30" width="2.4" height="7.4"/>
+  </g>
 </svg>
