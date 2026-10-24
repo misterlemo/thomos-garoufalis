@@ -1,52 +1,39 @@
 import { useLanguage } from '../LanguageContext';
+import { TEAM } from '../data';
 
 const Team = () => {
   const { t } = useLanguage();
 
-  const teamMembers = [
-    {
-      key: 'member1',
-      email: 'thomchri@hotmail.com'
-    },
-    {
-      key: 'member2',
-      email: 'garoufalis.ls@gmail.com'
-    },
-    {
-      key: 'member3',
-      email: 'apoampr@gmail.com'
-    },
-    {
-      key: 'member4',
-      email: 'efgeorgov@gmail.com'
-    }
-  ];
-
   return (
-    <section id="team" className="section team">
+    <section className="team section section-tint" id="team">
       <div className="container">
-        <h2 className="section-title">{t.teamTitle}</h2>
-        <p className="section-subtitle">{t.teamSubtitle}</p>
-        
-        <div className="team-grid">
-          {teamMembers.map((member) => (
-            <div key={member.key} className="team-card">
-              <div className="team-photo-wrapper">
-                <div className="team-photo-placeholder">
-                  <span>{t[`${member.key}Name`].charAt(0)}</span>
-                </div>
-              </div>
-              <div className="team-info">
-                <h3 className="team-name">{t[`${member.key}Name`]}</h3>
-                <p className="team-role">{t[`${member.key}Role`]}</p>
-                <p className="team-bio">{t[`${member.key}Bio`]}</p>
-                <div className="team-email">
-                  ✉ {member.email}
-                </div>
-              </div>
-            </div>
-          ))}
+        <div className="section-head section-head-row" data-reveal>
+          <div>
+            <p className="eyebrow">
+              <span className="rule" aria-hidden="true" />
+              {t.teamEyebrow}
+            </p>
+            <h2 className="section-title">{t.teamTitle}</h2>
+          </div>
         </div>
+
+        <ul className="team-grid">
+          {TEAM.map((m, i) => (
+            <li key={m.email} className="person" data-reveal style={{ '--i': i }}>
+              <div className="portrait" aria-hidden="true">
+                <span className="portrait-initials">{m.initials}</span>
+                <span className="portrait-index">0{i + 1}</span>
+              </div>
+              <div className="person-info">
+                <p className="person-role">{m.partner ? t.partner : t.associate}</p>
+                <h3 className="person-name">{t.team[i]}</h3>
+                <a className="person-email" href={`mailto:${m.email}`}>
+                  {m.email}
+                </a>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

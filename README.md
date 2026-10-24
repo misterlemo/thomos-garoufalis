@@ -58,34 +58,20 @@ thelawfirmproject/
 │   └── Footer.jsx          # Footer component
 ```
 
-## Form Handling Configuration
+## Contact form (Web3Forms)
 
-### Web3Forms (Current Configuration)
+The form posts to [Web3Forms](https://web3forms.com), which emails each submission to one inbox. The visitor's email is set as reply-to, so you can answer directly.
 
-The contact form is configured to use Web3Forms for email delivery. To activate:
+1. Go to https://web3forms.com, enter the inbox that should receive enquiries (e.g. the office email) and click **Create Access Key**. The key arrives by email.
+2. Copy `.env.example` to `.env` and paste the key:
+   ```
+   VITE_WEB3FORMS_KEY=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+   ```
+3. Restart `npm run dev` (or rebuild). On your host (Netlify, Vercel, …) add the same `VITE_WEB3FORMS_KEY` environment variable before building.
 
-1. Sign up at [web3forms.com](https://www.web3forms.com)
-2. Get your Access Key from the dashboard
-3. Replace `YOUR_ACCESS_KEY` in `src/components/Contact.jsx` with your actual access key
-4. Email will be sent to: misterlemo@gmail.com
+Without a key the form still works: it opens the visitor's mail app with the message pre-filled, addressed to the office emails in `src/data.js`.
 
-The form is already configured with:
-- API endpoint: `https://api.web3forms.com/submit`
-- Email recipient: misterlemo@gmail.com
-- Subject: "New Contact Form Submission"
-- Reply-to: sender's email address
-
-### Alternative Options
-
-**Option 1: Netlify Forms**
-- Add `data-netlify="true"` attribute to form
-- Deploy to Netlify - forms work automatically
-- Configure email notifications in Netlify dashboard
-
-**Option 2: Formspree**
-1. Sign up at [formspree.io](https://formspree.io)
-2. Create a new form to get your endpoint URL
-3. Update form action to your Formspree endpoint
+Spam protection: a hidden `botcheck` honeypot field is included.
 
 ## Content Update Instructions
 

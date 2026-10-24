@@ -1,34 +1,37 @@
-import { useEffect } from 'react';
 import { LanguageProvider } from './LanguageContext';
-import Navigation from './components/Navigation';
-import Home from './components/Home';
-import Services from './components/Services';
-import WhyChooseUs from './components/WhyChooseUs';
+import { useReveal } from './hooks';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Practice from './components/Practice';
+import Approach from './components/Approach';
 import Team from './components/Team';
 import Contact from './components/Contact';
-import Footer from './Footer';
-import './index.css';
+import Footer from './components/Footer';
 
-function App() {
-  useEffect(() => {
-    document.documentElement.lang = 'el';
-  }, []);
-
+const Site = () => {
+  useReveal();
   return (
-    <LanguageProvider>
-      <div className="app">
-        <Navigation />
-        <main>
-          <Home />
-          <Services />
-          <WhyChooseUs />
-          <Team />
-          <Contact />
-        </main>
-        <Footer />
-      </div>
-    </LanguageProvider>
+    <>
+      <a href="#practice" className="skip-link">
+        Skip to content
+      </a>
+      <Header />
+      <main>
+        <Hero />
+        <Practice />
+        <Approach />
+        <Team />
+        <Contact />
+      </main>
+      <Footer />
+    </>
   );
-}
+};
+
+const App = () => (
+  <LanguageProvider>
+    <Site />
+  </LanguageProvider>
+);
 
 export default App;
