@@ -1,10 +1,33 @@
+import { useEffect, useRef } from 'react';
 import { useLanguage } from '../LanguageContext';
 import { OFFICE_EMAILS, PHONE, PHONE_HREF } from '../data';
 import { Monogram } from './Header';
 
+// Scale the wordmark so it spans the container exactly, whatever the language.
+const useFitText = (text) => {
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const fit = () => {
+      el.style.fontSize = '100px';
+      const natural = el.scrollWidth;
+      const available = el.clientWidth;
+      if (natural) el.style.fontSize = `${Math.min(160, (100 * available) / natural)}px`;
+    };
+    fit();
+    const ro = new ResizeObserver(fit);
+    ro.observe(el.parentElement);
+    document.fonts?.ready.then(fit);
+    return () => ro.disconnect();
+  }, [text]);
+  return ref;
+};
+
 const Footer = () => {
   const { t } = useLanguage();
   const year = new Date().getFullYear();
+  const wordmarkRef = useFitText(t.firmShort);
 
   return (
     <footer className="footer section-dark">
@@ -36,7 +59,7 @@ const Footer = () => {
         </div>
 
         <p className="wordmark" aria-hidden="true">
-          {t.firmShort}
+          <span ref={wordmarkRef}>{t.firmShort}</span>
         </p>
 
         <div className="footer-bottom">

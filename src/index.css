@@ -57,6 +57,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Subtle paper grain */
@@ -413,6 +414,11 @@ p {
   background: var(--ink);
   color: var(--paper);
   opacity: 1;
+}
+.mobile-menu .lang-switch button {
+  height: 40px;
+  min-width: 48px;
+  font-size: 13px;
 }
 .mobile-menu .lang-switch button[aria-pressed='true'] {
   background: var(--on-dark);
@@ -840,8 +846,13 @@ p {
 :lang(ka) .practice-title {
   font-size: clamp(26px, 3.6vw, 52px);
 }
-.practice-row:hover .practice-title {
-  transform: translateX(12px);
+@media (hover: hover) {
+  .practice-row:hover .practice-title {
+    transform: translateX(12px);
+  }
+  .practice-row:hover .practice-icon {
+    border-color: var(--on-dark);
+  }
 }
 .practice-item.is-open .practice-title {
   font-style: italic;
@@ -875,9 +886,6 @@ p {
 }
 .practice-icon::after {
   transform: translate(-50%, -50%) rotate(90deg);
-}
-.practice-row:hover .practice-icon {
-  border-color: var(--on-dark);
 }
 .practice-item.is-open .practice-icon {
   background: var(--on-dark);
@@ -1057,15 +1065,20 @@ p {
   letter-spacing: 0.12em;
   color: var(--muted);
 }
-.person:hover .portrait {
-  background: var(--ink);
-}
-.person:hover .portrait-initials {
-  color: var(--paper);
-  transform: scale(1.08);
-}
-.person:hover .portrait::before {
-  opacity: 0.2;
+@media (hover: hover) {
+  .person:hover .portrait {
+    background: var(--ink);
+  }
+  .person:hover .portrait-initials {
+    color: var(--paper);
+    transform: scale(1.08);
+  }
+  .person:hover .portrait::before {
+    opacity: 0.2;
+  }
+  .map:hover iframe {
+    filter: none;
+  }
 }
 .person-role {
   font-size: 12px;
@@ -1188,6 +1201,7 @@ p {
 }
 
 .form-card {
+  container-type: inline-size;
   position: sticky;
   top: calc(var(--header-h) + 24px);
   padding: clamp(28px, 4vw, 48px);
@@ -1206,7 +1220,13 @@ p {
 }
 .field {
   display: grid;
+  align-content: start;
   gap: 8px;
+}
+@container (max-width: 460px) {
+  .field-row {
+    grid-template-columns: 1fr;
+  }
 }
 .field label {
   font-size: 12px;
@@ -1312,9 +1332,6 @@ p {
   filter: grayscale(1) sepia(0.25) contrast(1.05) brightness(0.98);
   transition: filter 0.6s var(--ease);
 }
-.map:hover iframe {
-  filter: none;
-}
 
 /* ==========================================================================
    Footer
@@ -1350,7 +1367,14 @@ p {
 .footer-col a:hover {
   color: var(--on-dark);
 }
+.wordmark span {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-right: 0.02em;
+}
 .wordmark {
+  display: block;
   font-family: var(--serif);
   font-weight: 300;
   font-size: clamp(40px, 8.4vw, 132px);
@@ -1397,14 +1421,20 @@ p {
   .header-actions .btn {
     display: none;
   }
-  .team-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .footer-top {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
   }
   .footer-brand {
     grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 899px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .portrait {
+    aspect-ratio: 3 / 2;
   }
 }
 
@@ -1421,7 +1451,8 @@ p {
     max-width: none;
   }
   .arch {
-    aspect-ratio: 16 / 11;
+    aspect-ratio: auto;
+    height: clamp(200px, min(56vw, 34svh), 380px);
     border-radius: 999px 999px var(--radius) var(--radius);
   }
   .seal {
@@ -1467,6 +1498,9 @@ p {
   .form-card {
     position: static;
   }
+}
+
+@media (max-width: 600px) {
   .facts {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1507,6 +1541,9 @@ p {
     grid-template-columns: 1fr 1fr;
     gap: 24px 12px;
   }
+  .portrait {
+    aspect-ratio: 4 / 5;
+  }
   .person-name {
     font-size: 18px;
   }
@@ -1525,6 +1562,24 @@ p {
   }
   .footer-top {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 400px) {
+  .brand {
+    gap: 10px;
+  }
+  .monogram {
+    width: 38px;
+    height: 38px;
+    font-size: 17px;
+  }
+  .brand-name {
+    font-size: 13.5px;
+    letter-spacing: 0;
+  }
+  .person-email {
+    font-size: 11px;
   }
 }
 
